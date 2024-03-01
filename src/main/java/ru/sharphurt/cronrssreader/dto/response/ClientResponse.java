@@ -1,12 +1,14 @@
 package ru.sharphurt.cronrssreader.dto.response;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
+@NoArgsConstructor
 public class ClientResponse<T> {
-    private final Boolean successful;
-    private final T result;
-    private final String error;
+    private Boolean successful;
+    private T result;
+    private String error;
 
     public ClientResponse(T result) {
         this.result = result;
