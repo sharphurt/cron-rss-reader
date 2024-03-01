@@ -23,7 +23,7 @@ public class UpdateNewsCollectionCronServiceImpl implements UpdateNewsCollection
 
     public static final String serviceName = "read-rss-cron-service";
 
-    @Scheduled(cron = "*/10 */1 * * * *")
+    @Scheduled(cron = "${application.cron-expression}")
     public void updateNewsCollection() {
         log.info(LOG_CRON_SERVICE_START.formatted(serviceName));
 
