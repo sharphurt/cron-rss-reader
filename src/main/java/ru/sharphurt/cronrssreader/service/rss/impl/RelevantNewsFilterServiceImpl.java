@@ -1,10 +1,12 @@
-package ru.sharphurt.cronrssreader.service.rss;
+package ru.sharphurt.cronrssreader.service.rss.impl;
 
 import com.apptasticsoftware.rssreader.Item;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.sharphurt.cronrssreader.dto.NewsInformationDto;
+import ru.sharphurt.cronrssreader.service.rss.RelevantNewsFilterService;
+import ru.sharphurt.cronrssreader.service.rss.GetLastPublicationTimeService;
 
 import java.time.ZonedDateTime;
 import java.util.List;
@@ -15,13 +17,11 @@ import static ru.sharphurt.cronrssreader.mapper.NewsInformationMapper.NEWS_INFOR
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class GetActualNewsService {
+public class RelevantNewsFilterServiceImpl implements RelevantNewsFilterService {
 
-    private final GetRssFeedService rssFeedService;
     private final GetLastPublicationTimeService lastPublicationTimeService;
 
-    public List<NewsInformationDto> getActualNews() {
-        var rssFeed = rssFeedService.getRssFeed();
+    public List<NewsInformationDto> filterRelevantNews(List<Item> rssFeed) {
         var lastPublicationTime = lastPublicationTimeService.getLastPublicationTime();
 
         return rssFeed.stream()
